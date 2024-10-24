@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html") // 当需要登录的时候让框架返回重定向到登录页面的302响应
                 .loginProcessingUrl("/doLogin") // 不需要应用提供表单登录的接口，由框架提供登录功能，直接配置登录的接口即可让框架匹配即可。问题：框架还提供了哪些接口功能，并且运行配置，是不是还有一个logout？
                 .successHandler(new MyAuthenticationSuccessHandler()) // 自定义登录成功处理器
-                .failureUrl("/login.html") // 登录失败页面
+                .failureForwardUrl("/mylogin.html") // 通过后端转发可以展示错误信息，failureUrl的原理是302重定向
                 .usernameParameter("uname") // 表单登录的参数是formData，从该参数字段获取userName
                 .passwordParameter("passwd") // 表单登录的参数是formData，从该参数字段获取password
                 .permitAll()
